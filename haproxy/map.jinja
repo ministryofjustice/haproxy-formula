@@ -1,0 +1,19 @@
+{% set haproxy_role = salt['grains.get']('haproxy', 'default') %}
+{% set haproxy = salt['grains.filter_by']({
+    'Debian': {
+      'loglevel': 'info',
+      'this': salt['grains.filter_by']({
+        'default': {
+          'downstream_port': 80,
+          'downstream_role': 'application',
+          'ssl': False
+          'http_port': 80,
+          'https_port': 443,
+          'https_port': None,
+        }
+      }, merge=salt['pillar.get']('haproxy:roles:'+haproxy_role,{})),
+      'roles': {},
+    },
+    'default': 'Debian',
+}, merge=salt['pillar.get']('haproxy',{})) %}
+
