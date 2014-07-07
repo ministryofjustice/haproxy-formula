@@ -41,4 +41,7 @@ haproxy:
 
 
 {% from 'firewall/lib.sls' import firewall_enable with context %}
-{{ firewall_enable('haproxy', 80, proto='tcp') }}
+{{ firewall_enable('haproxy', haproxy.this.http_port, proto='tcp') }}
+{% if haproxy.this.ssl -%}
+  {{ firewall_enable('haproxy', haproxy.this.https_port, proto='tcp') }}
+{%- endif %}

@@ -3,13 +3,12 @@
     'Debian': {
       'loglevel': 'info',
       'this': salt['grains.filter_by']({
-        'default': {
+        'Debian': {
           'downstream_port': 80,
           'downstream_role': 'application',
-          'ssl': False
+          'ssl': False,
           'http_port': 80,
           'https_port': 443,
-          'https_port': None,
         }
       }, merge=salt['pillar.get']('haproxy:roles:'+haproxy_role,{})),
       'roles': {},

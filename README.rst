@@ -39,7 +39,17 @@ grains on application server::
       - myapp
 
 
+salt mine configuration
+-----------------------
 
+As we are depending on salt mine to detect servers don't forget to enable it in salt minion config
+
+minion::
+
+    mine_functions:
+      network.ip_addrs: []
+
+    mine_interval: 1
 
 
 TODO
