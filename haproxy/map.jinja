@@ -1,7 +1,9 @@
 {% set haproxy_role = salt['grains.get']('haproxy', 'default') %}
+
 {% set haproxy = salt['grains.filter_by']({
     'Debian': {
       'loglevel': 'info',
+      'role': haproxy_role,
       'this': salt['grains.filter_by']({
         'Debian': {
           'downstream_port': 80,

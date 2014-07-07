@@ -5,19 +5,23 @@ Load balancing with SSL termination (haproxy >= 1.5)
  - adds 1.5 haproxy pkg repo
  - installs haproxy
  - checks grains to select haproxy configuration (configuration namespacing)
- - detect downstream servers to pass traffic to
- - log unique request_id
+ - detects downstream servers to pass traffic to
+ - logs unique request_id
 
 
 configuration
 -------------
 
-example loadbalancer gains::
+example loadbalancer grains::
+
+    roles:
+      - haproxy.default
+
+
+example loadbalancer grains (short)::
 
     roles:
       - haproxy
-    haproxy:
-      default
 
 
 example pillar::

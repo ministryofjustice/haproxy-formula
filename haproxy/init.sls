@@ -1,4 +1,4 @@
-{% from "haproxy/map.jinja" import haproxy, haproxy_role with context %}
+{% from "haproxy/map.jinja" import haproxy with context %}
 
 include:
   - .repo
@@ -20,7 +20,7 @@ haproxy:
 
 /etc/haproxy/haproxy.cfg:
   file.managed:
-    - source: salt://haproxy/templates/{{haproxy_role}}.cfg
+    - source: salt://haproxy/templates/{{haproxy.role}}.cfg
     - template: jinja
 
 
@@ -42,6 +42,7 @@ haproxy:
 
 {% from 'firewall/lib.sls' import firewall_enable with context %}
 {{ firewall_enable('haproxy', haproxy.this.http_port, proto='tcp') }}
-{% if haproxy.this.ssl -%}
+
+{% if haproxy.this.ssl %}
   {{ firewall_enable('haproxy', haproxy.this.https_port, proto='tcp') }}
-{%- endif %}
+{% endif %}
