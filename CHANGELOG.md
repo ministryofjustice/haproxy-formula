@@ -1,3 +1,8 @@
+## Version 1.1.2
+
+* Timeouts tuning
+* Added salt-shaker requirements
+
 ## Version 1.1.1
 
 * Fixes for request_id format

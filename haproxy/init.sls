@@ -18,6 +18,10 @@ haproxy:
         - pkg: haproxy
 
 
+hatop:
+  pkg.installed
+
+
 /etc/haproxy/haproxy.cfg:
   file.managed:
     - source: salt://haproxy/templates/{{haproxy.role}}.cfg
