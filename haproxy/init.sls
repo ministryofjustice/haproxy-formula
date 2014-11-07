@@ -24,7 +24,7 @@ hatop:
 
 /etc/haproxy/haproxy.cfg:
   file.managed:
-    - source: salt://haproxy/templates/{{haproxy.role}}.cfg
+    - source: {{haproxy.this.template}}
     - template: jinja
 
 

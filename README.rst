@@ -15,13 +15,13 @@ configuration
 example loadbalancer grains::
 
     roles:
-      - haproxy.default
+      - haproxy.my.app
 
 
-example loadbalancer grains (short)::
+example application server grains::
 
     roles:
-      - haproxy
+      - my.app
 
 
 example pillar::
@@ -29,18 +29,11 @@ example pillar::
     haproxy:
       loglevel: debug
       roles:
-        default:
+        my.app:
           downstream_port: 81
-          downstream_role: myapp
           ssl: True
           http_port: 80
           https_port: 443
-
-
-grains on application server::
-
-    roles:
-      - myapp
 
 
 salt mine configuration
