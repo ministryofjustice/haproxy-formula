@@ -1,5 +1,6 @@
 ##
 
+* Throttling
 * Fix roles detection
 * Simplify ciphers configuration
 

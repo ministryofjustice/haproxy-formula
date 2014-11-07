@@ -36,6 +36,20 @@ example pillar::
           https_port: 443
 
 
+throttling
+----------
+To enable throttling create pillar like::
+
+    haproxy:
+      roles:
+        yourapp:
+          throttling: True
+
+
+Please consult `map.jinja` for other options.
+Defaults assume 5 users per IP and browser opening its 5 to 7 TCP connections per domain name.
+
+
 salt mine configuration
 -----------------------
 

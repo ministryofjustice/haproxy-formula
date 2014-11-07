@@ -12,8 +12,6 @@ haproxy:
   service:
     - running
     - enable: True
-    - watch:
-        - file: /etc/haproxy/haproxy.cfg
     - require:
         - pkg: haproxy
 
@@ -22,10 +20,20 @@ hatop:
   pkg.installed
 
 
+/etc/haproxy/whitelist:
+  file.managed:
+    - source: salt://haproxy/templates/whitelist
+    - template: jinja
+    - watch_in:
+      - service: haproxy
+
+
 /etc/haproxy/haproxy.cfg:
   file.managed:
     - source: {{haproxy.this.template}}
     - template: jinja
+    - watch_in:
+      - service: haproxy
 
 
 {% if salt['pillar.get']('deploy:ssl:key') and salt['pillar.get']('deploy:ssl:crt') %}

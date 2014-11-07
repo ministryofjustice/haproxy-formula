@@ -7,6 +7,10 @@
       'this': salt['grains.filter_by']({
         'Debian': {
           'downstream_port': 80,
+          'throttling': False,
+          'throttling_src_conn_cur': 50,
+          'throttling_src_conn_rate': 50,
+          'throttling_src_conn_rate_period': '3s',
           'ssl': False,
           'http_port': 80,
           'stats_port': 8880,
