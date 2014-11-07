@@ -47,6 +47,8 @@ hatop:
 {% from 'firewall/lib.sls' import firewall_enable with context %}
 {{ firewall_enable('haproxy', haproxy.this.http_port, proto='tcp') }}
 
+{{ firewall_enable('haproxy-stats', haproxy.this.stats_port, proto='tcp') }}
+
 {% if haproxy.this.ssl %}
-  {{ firewall_enable('haproxy', haproxy.this.https_port, proto='tcp') }}
+  {{ firewall_enable('haproxy-ssl', haproxy.this.https_port, proto='tcp') }}
 {% endif %}
