@@ -47,7 +47,24 @@ To enable throttling create pillar like::
 
 
 Please consult `map.jinja` for other options.
-Defaults assume 5 users per IP and browser opening its 5 to 7 TCP connections per domain name.
+
+On defaults:
+As browser nowadays are opening 5 to 7 TCP connections per domain name, to keep on safe side we are setting
+10 as maximum concurrent connections.
+On top of it we are assuming that user will need at least 3s to open a next page, so we allow for rate of
+10 requests per 3 seconds window.
+Taking into account that users are ofter natted behind a single ip, our default configuration assumes maximum
+5 users natted behind a single IP.
+
+Therefore::
+
+    connection_concurrently_open = 10*5 = 50
+    connection_rate_over_3s_window = 10*5 = 50
+
+
+Note that all throttling is happening on layer 4 (transport - tcp).
+Additionally we also protect from slowloris type attack. By waiting max 5s for connection and 5s for http-request.
+It might impact big POST requests.
 
 
 salt mine configuration
