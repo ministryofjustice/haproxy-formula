@@ -15,13 +15,13 @@ configuration
 example loadbalancer grains::
 
     roles:
-      - haproxy.default
+      - haproxy.my.app
 
 
-example loadbalancer grains (short)::
+example application server grains::
 
     roles:
-      - haproxy
+      - my.app
 
 
 example pillar::
@@ -29,18 +29,44 @@ example pillar::
     haproxy:
       loglevel: debug
       roles:
-        default:
+        my.app:
           downstream_port: 81
-          downstream_role: myapp
           ssl: True
           http_port: 80
           https_port: 443
 
 
-grains on application server::
+throttling
+----------
+To enable throttling create pillar like::
 
-    roles:
-      - myapp
+    haproxy:
+      roles:
+        yourapp:
+          throttling: True
+
+
+Please consult `map.jinja` for other options.
+
+On defaults:
+As browser nowadays are opening 5 to 7 TCP connections per domain name, to keep on safe side we are setting
+10 as maximum concurrent connections.
+On top of it we are assuming that user will need at least 3s to open a next page, so we allow for rate of
+10 requests per 3 seconds window.
+Taking into account that users are ofter natted behind a single ip, our default configuration assumes maximum
+5 users natted behind a single IP.
+
+Therefore::
+
+    connection_concurrently_open = 10*5 = 50
+    connection_rate_over_3s_window = 10*5 = 50
+
+
+In case you want to whitelist specific ips. Please supply your salt://haproxy/templates/whitelist file.
+
+Note that all throttling is happening on layer 4 (transport - tcp).
+Additionally we also protect from slowloris type attack. By waiting max 5s for connection and 5s for http-request.
+It might impact big POST requests.
 
 
 salt mine configuration

@@ -1,3 +1,9 @@
+##
+
+* Throttling
+* Fix roles detection
+* Simplify ciphers configuration
+
 ## Version 1.1.2
 
 * Timeouts tuning

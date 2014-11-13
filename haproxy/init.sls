@@ -12,8 +12,6 @@ haproxy:
   service:
     - running
     - enable: True
-    - watch:
-        - file: /etc/haproxy/haproxy.cfg
     - require:
         - pkg: haproxy
 
@@ -22,10 +20,20 @@ hatop:
   pkg.installed
 
 
+/etc/haproxy/whitelist:
+  file.managed:
+    - source: salt://haproxy/templates/whitelist
+    - template: jinja
+    - watch_in:
+      - service: haproxy
+
+
 /etc/haproxy/haproxy.cfg:
   file.managed:
-    - source: salt://haproxy/templates/{{haproxy.role}}.cfg
+    - source: {{haproxy.this.template}}
     - template: jinja
+    - watch_in:
+      - service: haproxy
 
 
 {% if salt['pillar.get']('deploy:ssl:key') and salt['pillar.get']('deploy:ssl:crt') %}
@@ -47,6 +55,8 @@ hatop:
 {% from 'firewall/lib.sls' import firewall_enable with context %}
 {{ firewall_enable('haproxy', haproxy.this.http_port, proto='tcp') }}
 
+{{ firewall_enable('haproxy-stats', haproxy.this.stats_port, proto='tcp') }}
+
 {% if haproxy.this.ssl %}
-  {{ firewall_enable('haproxy', haproxy.this.https_port, proto='tcp') }}
+  {{ firewall_enable('haproxy-ssl', haproxy.this.https_port, proto='tcp') }}
 {% endif %}
