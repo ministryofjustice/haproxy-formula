@@ -1,7 +1,7 @@
-##
+## Version 2.0.0
 
 * Throttling
-* Fix roles detection
+* Fix roles detection (make sure your roles grain follows the pattern) 
 * Simplify ciphers configuration
 
 ## Version 1.1.2
