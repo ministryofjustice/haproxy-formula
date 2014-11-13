@@ -62,6 +62,8 @@ Therefore::
     connection_rate_over_3s_window = 10*5 = 50
 
 
+In case you want to whitelist specific ips. Please supply your salt://haproxy/templates/whitelist file.
+
 Note that all throttling is happening on layer 4 (transport - tcp).
 Additionally we also protect from slowloris type attack. By waiting max 5s for connection and 5s for http-request.
 It might impact big POST requests.
