@@ -1,3 +1,9 @@
+## Version 2.0.x
+
+* Remove SSLv3 to cover for POODLE
+* Fix tcp-request/reqadd ordering to remove warnings
+* Log to syslog using unix socket #3
+
 ## Version 2.0.0
 
 * Throttling
