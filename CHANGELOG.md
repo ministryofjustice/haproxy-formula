@@ -1,4 +1,4 @@
-## Version 2.0.x
+## Version 2.0.1
 
 * Remove SSLv3 to cover for POODLE
 * Fix tcp-request/reqadd ordering to remove warnings
