@@ -68,6 +68,23 @@ Note that all throttling is happening on layer 4 (transport - tcp).
 Additionally we also protect from slowloris type attack. By waiting max 5s for connection and 5s for http-request.
 It might impact big POST requests.
 
+Basic Auth support
+------------------
+
+It is possible to lock the haproxy instance down via Basic Auth, for example
+for non-public instances of a site.
+
+This can be done by setting the following pillar values in your haproxy role::
+
+    haproxy.haproxy_role.basic_auth_enabled: True
+    haproxy.haproxy_role.basic_auth_user: 'admin'
+    haproxy.haproxy_role.basic_auth_password: '$5$boguscryptpasswordstringblahblah'
+
+The value of basic_auth_password should be a string parsable by crypt(3). The
+'mkpasswd' tool (in 'whois' package on Ubuntu) can be useful for this task::
+
+    mkpasswd -m sha-256
+
 
 salt mine configuration
 -----------------------
