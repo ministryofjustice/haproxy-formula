@@ -1,3 +1,7 @@
+## Version 2.1.0
+
+* Allow specification of backend pool nodes via pillar data
+
 ## Version 2.0.1
 
 * Remove SSLv3 to cover for POODLE
@@ -7,7 +11,7 @@
 ## Version 2.0.0
 
 * Throttling
-* Fix roles detection (make sure your roles grain follows the pattern) 
+* Fix roles detection (make sure your roles grain follows the pattern)
 * Simplify ciphers configuration
 
 ## Version 1.1.2
