@@ -1,3 +1,7 @@
+## Version 2.2.0
+
+* Support for Basic Auth to prevent public access
+
 ## Version 2.1.0
 
 * Allow specification of backend pool nodes via pillar data
