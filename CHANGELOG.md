@@ -1,6 +1,10 @@
-## Version 2.2.0
+## Version 2.3.0
 
 * Update default list of SSL ciphers used
+
+## Version 2.2.0
+
+* Support for Basic Auth to prevent public access
 
 ## Version 2.1.0
 
