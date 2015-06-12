@@ -1,3 +1,7 @@
+## Version 2.x.0
+
+* Update default list of SSL ciphers used
+
 ## Version 2.1.0
 
 * Allow specification of backend pool nodes via pillar data
