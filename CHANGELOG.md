@@ -1,4 +1,4 @@
-## Version 2.x.0
+## Version 2.2.0
 
 * Update default list of SSL ciphers used
 
